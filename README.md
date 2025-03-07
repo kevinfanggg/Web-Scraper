@@ -5,6 +5,7 @@ INSTRUCTIONS:
 1.) Paste the following text into Command Prompt and press Enter.
 
 **"C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222**
+
 **chrome.exe --temote-debugging-port=9222**
 
 2.) Once Google Chrome tab is opened, paste in desired page to scrape.
