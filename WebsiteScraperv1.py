@@ -78,4 +78,3 @@ with open(csv_filename, mode="a", newline="", encoding="utf-8") as file:
     writer.writerow(data)
 
 print(f"\n✅ Data saved to {csv_filename}")
-
