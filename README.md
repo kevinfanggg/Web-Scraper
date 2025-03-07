@@ -2,5 +2,6 @@ This web scraper is designed to efficiently extract data from retail websites su
 
 INSTRUCTIONS:
 1.) Paste the following text into Command Prompt and press Enter.
+
 **"C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222**
 
