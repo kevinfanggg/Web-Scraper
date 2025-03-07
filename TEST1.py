@@ -3,7 +3,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 
-# Connect to the already open Chrome browser
 # Get user input for the product URL
 product_url = input("Enter Walmart Canada Product URL: ").strip()
 
