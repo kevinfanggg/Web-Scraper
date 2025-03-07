@@ -1,58 +1,81 @@
-import requests
-from bs4 import BeautifulSoup
-import json
+import csv
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 
-# Prompt the user for product URL page:
-url = input("Paste and enter the link: ").strip()
+# Connect to the already open Chrome browser
+options = webdriver.ChromeOptions()
+options.debugger_address = "localhost:9222"  # Port from debugging mode
 
-# Mimic the broswer
-headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\
-           /537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"}
+# Open browser with existing session
+driver = webdriver.Chrome(options=options)
 
-# Fetches the page
-response = requests.get(url, headers=headers)
+# Function to extract values dynamically based on heading text
+def get_field_value(field_name):
+    try:
+        header = driver.find_element(By.XPATH, f"//h3[contains(text(), '{field_name}')]")
+        value = header.find_element(By.XPATH, "./following-sibling::div/span").text
+        return value
+    except:
+        return "Not Found"
 
-# Check if the request was successful
-if response.status_code == 200:
-    soup = BeautifulSoup(response.text, "html.parser")
+# Function to get text of an element using XPath
+def get_element_text(xpath):
+    try:
+        return driver.find_element(By.XPATH, xpath).text
+    except:
+        return "Not Found"
 
-    # Find JSON data embedded in the HTML
-    script_tags = soup.find_all("script", type="application/ld+json")
+# Function to get attribute value of an element using XPath
+def get_element_attribute(xpath, attribute):
+    try:
+        return driver.find_element(By.XPATH, xpath).get_attribute(attribute)
+    except:
+        return "Not Found"
 
-    # Extract JSON-LD structured data
-    product_data = None
-    for script in script_tags:
-        try:
-            json_data = json.loads(script.string)
-            if json_data.get("@type") == "Product":
-                product_data = json_data
-                break
-        except json.JSONDecodeError:
-            continue
+# Scrape Title, Image URL, and Product Details using fixed XPaths
+title = get_element_text('//*[@id="main-title"]')
+image_url = get_element_attribute('//*[@id="maincontent"]/section/main/div[2]/div[2]/div/div[2]/div/div/section[1]/div[2]/div[1]/img', "src")
+product_details = get_element_text('//*[@id="item-product-details"]/div[2]/div/div/div[2]/span')
 
-    # Extract relevant details if JSON was found
-    if product_data:
-        product_name = product_data.get("name", "N/A")
-        upc = product_data.get("gtin13", "N/A")
-        sku = product_data.get("sku", "N/A")
-        ingredients = product_data.get("ingredients", "N/A")
-        lifestyle_needs = product_data.get("suitableForDiet", "N/A")
+# Scrape other fields dynamically
+category_id = get_field_value("Category ID")
+lifestyle_dietary = get_field_value("Lifestyle & Dietary Need")
+sku = get_field_value("SKU")
+upc = get_field_value("Universal Product Code (UPC check)")
+ingredients = get_field_value("Ingredients")
 
-        # If Category ID inside the category breadcrumb
-        category_id = "N/A"
-        if "category" in product_data:
-            category_id = product_data["category"].split("/")[-1]
+# Data to save
+data = {
+    "Title": title,
+    "Image URL": image_url,
+    "Product Details": product_details,
+    "Category ID": category_id,
+    "Lifestyle & Dietary Need": lifestyle_dietary,
+    "SKU": sku,
+    "UPC": upc,
+    "Ingredients": ingredients
+}
 
-        # Print results
-        print("\nExtracted Product Information:")
-        print(f"Product Name: {product_name}")
-        print(f"UPC: {upc}")
-        print(f"SKU: {sku}")
-        print(f"Ingredients: {ingredients}")
-        print(f"Lifestyle & Dietary Needs: {lifestyle_needs}")
-        print(f"Category ID: {category_id}")
+# CSV file name
+csv_filename = "walmart_product_data.csv"
 
-    else:
-        print("Product data not found on the page.")
-else:
-    print(f"Failed to retrieve page. HTTP Status Code: {response.status_code}")
+# Write to CSV (append mode to save multiple entries)
+file_exists = False
+try:
+    with open(csv_filename, "r"):
+        file_exists = True
+except FileNotFoundError:
+    pass
+
+with open(csv_filename, mode="a", newline="", encoding="utf-8") as file:
+    writer = csv.DictWriter(file, fieldnames=data.keys())
+
+    # Write headers only if the file is new
+    if not file_exists:
+        writer.writeheader()
+
+    # Write data
+    writer.writerow(data)
+
+print(f"\n✅ Data saved to {csv_filename}")
+
