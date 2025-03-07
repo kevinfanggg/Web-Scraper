@@ -6,3 +6,6 @@ INSTRUCTIONS:
 
 **"C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222**
 
+2.) Once Google Chrome tab is opened, paste in desired page to scrape.
+
+3.) Open Code IDE and run code (CTRL + ALT + N)
