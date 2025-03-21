@@ -2,6 +2,7 @@
 
 This Python script uses Selenium to scrape product information from the Walmart website and saves it to a CSV file. It allows the user to repeatedly enter product URLs, extracts key product details, and appends them to a file under the name **"walmart_product_data.csv."** The script continues to prompt for new URLs until the user types STOP. For the main python program, download the **"WalmartScraper.py** file and follow the instructions. The **"TestVersions"** folder contains experimental/outdated versions of the webscraper. 
 
+
 🔧 **INSTRUCTIONS**
 
 1.) Paste the following text into Command Prompt and press Enter.
@@ -14,11 +15,15 @@ This Python script uses Selenium to scrape product information from the Walmart 
 
 3.) Open Code IDE and run code (CTRL + ALT + N)
 
+
+
 ✅ Example Output
 Each product entry in the CSV file will look like:
 
 Title	         | Image URL	  | Product Details	 | Category ID | Lifestyle & Dietary Need	 | SKU	 | UPC	      | Ingredients
 Example Product| https://...	| Description text | 123456	     | Gluten-Free	             | 12345 | 0123456789	| Sugar, Water, ...
+
+
 
 🚨 Notes
 - The script launches a new browser window for each product, which could be optimized by reusing a single session.
