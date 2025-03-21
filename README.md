@@ -1,13 +1,13 @@
 🚧 **NOTE: THIS PROGRAM IS NOT YET FULLY FUNCTIONAL & FEATURES MAY BE INCOMPLETE** 🚧
 
-This Python script uses Selenium to scrape product information from the Walmart website and saves it to a CSV file. It allows the user to repeatedly enter product URLs, extracts key product details, and appends them to a file under the name **"walmart_product_data.csv."** The script continues to prompt for new URLs until the user types STOP. For the main python program, download the **"WalmartScraper.py** file and follow the instructions. The **"TestVersions"** folder contains experimental/outdated versions of the webscraper.  
+This Python script uses Selenium to scrape product information from the Walmart website and saves it to a CSV file. It allows the user to repeatedly enter product URLs, extracts key product details, and appends them to a file under the name **"walmart_product_data.csv."** The script continues to prompt for new URLs until the user types STOP. For the main python program, download the **"WalmartScraper.py"** file and follow the instructions. The **"TestVersions"** folder contains experimental/outdated versions of the webscraper.  
 
 
 🔧 **INSTRUCTIONS**
 
 1.) Download the **"WalmartScraper.py** file
 
-2.) Run the **"WalmartScraper.py** file, using your preferred IDE (VS Code, PyCharm, etc.). Some versions may not be compatible with this program.
+2.) Run the **"WalmartScraper.py"** file, using your preferred IDE (VS Code, PyCharm, etc.). Some versions may not be compatible with this program.
 
 3.) Open Code IDE and run (CTRL + ALT + N). The terminal should print "Enter Walmart Canada Product URL (or type STOP to stop scraping):"
 
