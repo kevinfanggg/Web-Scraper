@@ -23,6 +23,4 @@ Each product entry in the CSV file will look like:
 
 
 🚨 **NOTES**
-- The script launches a new browser window for each product, which could be optimized by reusing a single session.
-- Error handling is included for missing elements (returns "Not Found").
 - You must have Selenium and ChromeDriver properly set up in your environment to run this script.
