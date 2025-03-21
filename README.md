@@ -7,7 +7,7 @@ This Python script uses Selenium to scrape product information from the Walmart 
 
 1.) Download the **"WalmartScraper.py** file
 
-2.) Run the **"WalmartScraper.py** file, using your preferred IDE (VS Code, PyCharm, etc.). Note that not all versions are compatible with this program.
+2.) Run the **"WalmartScraper.py** file, using your preferred IDE (VS Code, PyCharm, etc.). Some versions may not be compatible with this program.
 
 3.) Open Code IDE and run (CTRL + ALT + N). The terminal should print "Enter Walmart Canada Product URL (or type STOP to stop scraping):"
 
