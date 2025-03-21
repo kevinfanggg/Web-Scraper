@@ -18,7 +18,8 @@ This Python script uses Selenium to scrape product information from the Walmart 
 6.) Repeat or type STOP to end loop<br>
 
 Each product entry in the CSV file will look like:
-![image](https://github.com/user-attachments/assets/1d98ffd7-557a-4c9e-be8d-2aa33d12aba4)
+![image](https://github.com/user-attachments/assets/df1db2d6-6870-452e-9d3e-b4489a1b5ba3)
+
 
 
 🚨 **NOTES**
